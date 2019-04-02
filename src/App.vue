@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :style="backgroundImage">
     <CakeAnimation :clickNumber="clickNumber" />
     <Message :clickNumber="clickNumber" @addClick="updateClickNumber($event)" />
   </div>
@@ -17,14 +17,27 @@ export default {
   }, 
   data: function() {
     return {
-      clickNumber: 0
+      clickNumber: 0,
     }
   },
   methods: {
     updateClickNumber: function(updatedClickNumber) {
       this.clickNumber = updatedClickNumber;
     }
-  }
+  },
+  computed: {
+    backgroundImage () {
+      if(this.clickNumber < 7) {
+          return {
+            "--background": " url('./assets/happy-birthday.gif')"
+          };
+      } else {
+          return {
+            "--background": " url('./assets/melody.jpg')"
+          };
+      }
+    }
+  },
 }
 </script>
 
@@ -44,7 +57,7 @@ export default {
   width: 100%; 
   height: 100%;
   position: absolute;
-  background-image: url("./assets/happy-birthday.gif");
+  background-image: var(--background);
   background-size: auto 100vh;
   background-position: center;
   filter: grayscale(100%);
