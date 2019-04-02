@@ -9,24 +9,23 @@
 
 <script>
 
-let button = "nik";
-
 export default {
   name: 'Message',
   props: {
-    msg: String
+    clickNumber: {
+      type: Number
+    }
   },
   data: function() {
     return {
       button: "Blow on the screen",
       display: false, 
-      comment: "Did you really try to blow? I can't believe I missed this! There is one candle left...",
-      clickNumber: 0
+      comment: "Did you really try to blow on the screen? I can't believe I missed this! There is one candle left your loser...",
     }
   },
   methods: {
     handleClick: function() {
-      this.clickNumber += 1;
+      this.$emit("addClick", this.clickNumber+=1);
       if (this.clickNumber == 1) {
         this.button = "Blow again",
         this.display = true
@@ -45,7 +44,8 @@ export default {
       } else if (this.clickNumber == 6) {
         this.button = "It's done",
         this.comment = "Don't try to fool me, I can't offer you more... You have eaten way too much"
-      } else if (this.clickNumber == 9) {
+      } else if (this.clickNumber == 7) {
+        this.button = "I'm done",
         this.comment = "Ok, a last shitty message... I wish you the best of the best for you trip in Australia! I miss you darling <3"
       }
     }

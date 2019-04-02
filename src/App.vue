@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <CakeAnimation/>
-    <Message/>
+    <CakeAnimation :clickNumber="clickNumber" />
+    <Message :clickNumber="clickNumber" @addClick="updateClickNumber($event)" />
   </div>
 </template>
 
@@ -14,6 +14,16 @@ export default {
   components: {
     CakeAnimation,
     Message
+  }, 
+  data: function() {
+    return {
+      clickNumber: 0
+    }
+  },
+  methods: {
+    updateClickNumber: function(updatedClickNumber) {
+      this.clickNumber = updatedClickNumber;
+    }
   }
 }
 </script>
