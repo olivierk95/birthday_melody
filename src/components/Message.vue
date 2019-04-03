@@ -58,7 +58,8 @@ export default {
       this.$emit("addClick", this.clickNumber = 0);
       this.replay = true;
       this.button = "Blow on the screen";
-      this.comment = ""
+      this.comment = "";
+      this.textColor = "black"
     }
   }
 }
