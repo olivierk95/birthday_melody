@@ -1,7 +1,8 @@
 <template id="message">
   <div>
     <h2 v-show="display" :style="{color: textColor}"> {{ comment }}</h2>
-    <button @click="handleClick"> {{ button }} </button>
+    <button v-show="replay" @click="handleClick"> {{ button }} </button>
+    <button v-show="!replay" @click="replayExperience"> Replay </button>
     <h1> Happy Birthday Melody! </h1>
     <h3> *Have mercy on me for the delay </h3>
   </div>
@@ -21,7 +22,8 @@ export default {
       button: "Blow on the screen",
       display: false, 
       comment: "Did you really try to blow on the screen? I can't believe I missed this! There is one candle left your loser...",
-      textColor: "black"
+      textColor: "black",
+      replay: true
     }
   },
   methods: {
@@ -29,7 +31,8 @@ export default {
       this.$emit("addClick", this.clickNumber+=1);
       if (this.clickNumber == 1) {
         this.button = "Blow again",
-        this.display = true
+        this.display = true,
+        this.comment = "Did you really try to blow on the screen? I can't believe I missed this! There is one candle left your loser..."
       } else if (this.clickNumber == 2) {
         this.button = "Eat it",
         this.comment = "Well done! Now you can eat the cake now."
@@ -46,10 +49,16 @@ export default {
         this.button = "It's done",
         this.comment = "Don't try to fool me, I can't offer you more... You have eaten way too much"
       } else if (this.clickNumber == 7) {
-        this.button = "I'm done",
+        this.replay = false,
         this.comment = "Ok, a last shitty message... I wish you the best of the best for you trip in Australia! I miss you darling <3",
         this.textColor = "white"
-      }
+      } 
+    },
+    replayExperience: function () {
+      this.$emit("addClick", this.clickNumber = 0);
+      this.replay = true;
+      this.button = "Blow on the screen";
+      this.comment = ""
     }
   }
 }
