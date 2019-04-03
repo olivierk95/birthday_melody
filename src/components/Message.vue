@@ -1,6 +1,6 @@
 <template id="message">
   <div>
-    <h2 v-show="display"> {{ comment }}</h2>
+    <h2 v-show="display" :style="{color: textColor}"> {{ comment }}</h2>
     <button @click="handleClick"> {{ button }} </button>
     <h1> Happy Birthday Melody! </h1>
     <h3> *Have mercy on me for the delay </h3>
@@ -21,6 +21,7 @@ export default {
       button: "Blow on the screen",
       display: false, 
       comment: "Did you really try to blow on the screen? I can't believe I missed this! There is one candle left your loser...",
+      textColor: "black"
     }
   },
   methods: {
@@ -46,7 +47,8 @@ export default {
         this.comment = "Don't try to fool me, I can't offer you more... You have eaten way too much"
       } else if (this.clickNumber == 7) {
         this.button = "I'm done",
-        this.comment = "Ok, a last shitty message... I wish you the best of the best for you trip in Australia! I miss you darling <3"
+        this.comment = "Ok, a last shitty message... I wish you the best of the best for you trip in Australia! I miss you darling <3",
+        this.textColor = "white"
       }
     }
   }
@@ -78,7 +80,6 @@ h3 {
     position: fixed;
     bottom: 1rem;
     right: 1rem;
-    color: black;
     background-color: rgba(255, 255, 255, 0.5);
     padding: .2rem;
 }
